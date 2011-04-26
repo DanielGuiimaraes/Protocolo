@@ -5,6 +5,7 @@ class SolicitacaoController {
     static allowedMethods = [save: "POST", update: "POST", delete: "POST"]
 	
 	def mailService
+	def springSecurityService
 	
     def index = {
         redirect(action: "list", params: params)
@@ -22,8 +23,9 @@ class SolicitacaoController {
     }
 
     def save = {
-		
+		def usuarioLogado = SecUser.get(springSecurityService.principal.id)
         def solicitacaoInstance = new Solicitacao(params)
+		solicitacaoInstance.requerente = usuarioLogado.pessoa
        
 		 if (solicitacaoInstance.save(flush: true)) {
 			 
@@ -39,13 +41,13 @@ class SolicitacaoController {
 				 mailService.sendMail {
 					 to solicitacaoInstance.tipo.responsavel.email
 					 subject solicitacaoInstance.tipo.nome
-					 html  "http://localhost:8080/Protocolo1_1/solicitacao/aceitar/${solicitacaoInstance.id}"
+					 html  "Nova solicitação para você, clique no link a seguir para visualizar <a href='http://localhost:8080/Protocolo1_1/solicitacao/aceitar/${solicitacaoInstance.id}'>Clique aqui</a>"
 				 }
 				 
 			    mailService.sendMail {
 					 to solicitacaoInstance.requerente.email
-					 subject "Solicitacaoo"
-					 html "Sua solicitacao foi criada e encaminhada para o responsavel, aguarde o resultado.clique no link a segui para acompanhar o andamento: http://localhost:8080/Protocolo1_1/solicitacao/show/${solicitacaoInstance.id}"
+					 subject "Solicitacao"
+					 html "Sua solicitacao foi criada e encaminhada para o responsavel, aguarde o resultado.clique no link a segui para acompanhar o andamento: <a href='http://localhost:8080/Protocolo1_1/solicitacao/show/${solicitacaoInstance.id}'>Clique aqui</a>"
 				 }
 			
 

@@ -17,9 +17,9 @@ class BootStrap {
 		def coordenacaoDeCurso = Categoria.findByNome('Coordenacao de Curso') ?: new Categoria(nome:'Coordenacao de Curso').save()
 		def diretoriaAdministraticaFinanceira = Categoria.findByNome('Diretotia Administratica Financeira') ?: new Categoria(nome:'Diretotia Administratica Financeira').save()
 		
-		def diretorAcademico = Pessoa.findByNome('Diretor Academico') ?: new Pessoa(nome:'Diretor Academico',email: 'dnlguimaraes@gmail.com').save()
-		def diretorDeCurso = Pessoa.findByNome('Coordenacao De Curso') ?: new Pessoa(nome:'Coordenacao De Curso', email: 'dnlguimaraes@gmail.com').save()
-		def diretorFincanceiro = Pessoa.findByNome('Diretor Fincanceiro') ?: new Pessoa(nome:'Diretor Fincanceiro', email: 'dnlguimaraes@gmail.com').save()
+		def diretorAcademico = Pessoa.findByNome('Diretor Academico') ?: new Pessoa(nome:'Diretor Academico',email: 'protocolofacisa@gmail.com').save()
+		def diretorDeCurso = Pessoa.findByNome('Coordenacao De Curso') ?: new Pessoa(nome:'Coordenacao De Curso', email: 'protocolofacisa@gmail.com').save()
+		def diretorFincanceiro = Pessoa.findByNome('Diretor Fincanceiro') ?: new Pessoa(nome:'Diretor Fincanceiro', email: 'protocolofacisa@gmail.com').save()
 		
 		Tipo.findByNome('Certidao de Conclusao de Curso') ?: new Tipo(nome:'Certidao de Conclusao de Curso', responsavel: diretorAcademico, categoria: controleAcademico).save()
 		Tipo.findByNome('Dispensa de Disciplina') ?: new Tipo(nome:'Dispensa de Disciplina', responsavel: diretorDeCurso, categoria: coordenacaoDeCurso).save()
@@ -36,9 +36,12 @@ class BootStrap {
 						SecUserSecRole.create adminUser, adminRole
 					}
 			
-		
-				
-		
+		def administrador = Pessoa.findByNome('Admnistrador') ?: new Pessoa(nome:'Administrador', email:'protocolofacisa@gmail.com').save()
+
+		if (!adminUser.pessoa) {
+			adminUser.pessoa = administrador
+			adminUser.save(failOnError: false)
+		}
 		
 		Pessoa.findByNome('Daniel Guimaraes') ?: new Pessoa(nome:'Daniel Guimaraes', email:'dnlguimaraes@gmail.com').save()
 	    

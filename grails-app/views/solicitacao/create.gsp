@@ -48,15 +48,6 @@
                         
                             <tr class="prop">
                                 <td valign="top" class="name">
-                                    <label for="requerente"><g:message code="solicitacao.requerente.label" default="Requerente" /></label>
-                                </td>
-                                <td valign="top" class="value ${hasErrors(bean: solicitacaoInstance, field: 'requerente', 'errors')}">
-                                    <g:select name="requerente.id" from="${protocolo1_1.Pessoa.list()}" optionKey="id" value="${solicitacaoInstance?.requerente?.id}"  />
-                                </td>
-                            </tr>
-                        
-                            <tr class="prop">
-                                <td valign="top" class="name">
                                     <label for="tipo"><g:message code="solicitacao.tipo.label" default="Tipo" /></label>
                                 </td>
                                 <td valign="top" class="value ${hasErrors(bean: solicitacaoInstance, field: 'tipo', 'errors')}">
