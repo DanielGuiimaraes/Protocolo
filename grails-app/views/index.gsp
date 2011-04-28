@@ -1,9 +1,10 @@
 <html>
     <head>
-        <title>Welcome to Grails</title>
+        <title>Sistema De Protocolo Facisa</title>
         <meta name="layout" content="main" />
         <style type="text/css" media="screen">
-
+      
+        
         #nav {
             margin-top:20px;
             margin-left:30px;
@@ -52,8 +53,7 @@
     </head>
     <body>
         <a href='http://localhost:8080/Protocolo1_1/solicitacao/create'>Criar Solicitacao</a>
-        
-         
+                         
       
     </body>
 </html>
