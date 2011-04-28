@@ -8,7 +8,10 @@ class SolicitacaoController {
 	def springSecurityService
 	
     def index = {
-        redirect(action: "list", params: params)
+		def usuarioLogado = SecUser.get(springSecurityService.principal.id)
+		def solicitacoes = Solicitacao.findAllByRequerente(usuarioLogado.pessoa)
+		
+        [solicitacoes: solicitacoes, solicitacaoInstanceTotal: solicitacoes.count()]
     }
 
     def list = {
@@ -41,7 +44,7 @@ class SolicitacaoController {
 				 mailService.sendMail {
 					 to solicitacaoInstance.tipo.responsavel.email
 					 subject solicitacaoInstance.tipo.nome
-					 html  "Nova solicitação para você, clique no link a seguir para visualizar <a href='http://localhost:8080/Protocolo1_1/solicitacao/aceitar/${solicitacaoInstance.id}'>Clique aqui</a>"
+					 html  "Nova solicitaï¿½ï¿½o para vocï¿½, clique no link a seguir para visualizar <a href='http://localhost:8080/Protocolo1_1/solicitacao/aceitar/${solicitacaoInstance.id}'>Clique aqui</a>"
 				 }
 				 
 			    mailService.sendMail {
