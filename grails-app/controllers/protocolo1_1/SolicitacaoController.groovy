@@ -8,10 +8,13 @@ class SolicitacaoController {
 	def springSecurityService
 	
     def index = {
-		def usuarioLogado = SecUser.get(springSecurityService.principal.id)
-		def solicitacoes = Solicitacao.findAllByRequerente(usuarioLogado.pessoa)
+		params.max = Math.min(params.max ? params.int('max') : 10, 100)
 		
-        [solicitacoes: solicitacoes, solicitacaoInstanceTotal: solicitacoes.count()]
+		def usuarioLogado = SecUser.get(springSecurityService.principal.id)
+		def total = Solicitacao.findAllByRequerente(usuarioLogado.pessoa).size()
+		def solicitacoes = Solicitacao.findAllByRequerente(usuarioLogado.pessoa, params)
+		
+        [solicitacoes: solicitacoes, solicitacaoInstanceTotal: total]
     }
 
     def list = {
