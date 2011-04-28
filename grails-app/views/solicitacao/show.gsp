@@ -9,7 +9,6 @@
         <gui:resources components="dialog, richEditor"/>
     </head>
     <body>
-     
         <div class="body">
         	<h1 id="mensagem" style="color:red"></h1>
             <h1><g:message code="default.show.label" args="[entityName]" /></h1>
