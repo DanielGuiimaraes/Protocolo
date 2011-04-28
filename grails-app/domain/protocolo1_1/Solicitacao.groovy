@@ -7,7 +7,11 @@ class Solicitacao {
 	Date data
 	String descricao
 	static hasMany = [situacoes: Situacao]
-		
+	
+	static mapping = {
+		situacoes(sort: 'data', order: 'desc')
+	}
+	
     static constraints = {
     }
 	
