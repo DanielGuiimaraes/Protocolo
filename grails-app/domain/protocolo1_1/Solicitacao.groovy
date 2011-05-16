@@ -10,6 +10,8 @@ class Solicitacao {
 	
 	static mapping = {
 		situacoes(sort: 'data', order: 'desc')
+		requerente lazy: false
+		tipo lazy: false
 	}
 	
     static constraints = {

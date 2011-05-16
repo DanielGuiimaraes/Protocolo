@@ -56,6 +56,8 @@
             <div class="paginateButtons">
                 <g:paginate total="${solicitacaoInstanceTotal}" />
             </div>
+            
+            <g:jasperReport controller = 'solicitacao' action = 'relatorio' format = 'PDF,XLS' jasper = 'solicitacoes' name = 'todas as solicitacoes'/>
         </div>
     </body>
 </html>

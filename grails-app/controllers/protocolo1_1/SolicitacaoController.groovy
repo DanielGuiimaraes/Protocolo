@@ -16,6 +16,11 @@ class SolicitacaoController {
 		
         [solicitacoes: solicitacoes, solicitacaoInstanceTotal: total]
     }
+	
+	def relatorio = {
+		def solicitacoes = Solicitacao.list()
+		chain(controller:'jasper', action:'index', model:[data:solicitacoes], params:params)
+	}
 
     def list = {
         params.max = Math.min(params.max ? params.int('max') : 10, 100)
@@ -166,7 +171,7 @@ class SolicitacaoController {
 				to solicitacao.requerente.email
 				subject "Solicitacao Resolvida"
 				body "Sua Solicitacao ${solicitacao.tipo.nome} Foi resolvida"
-			}
+		}
 		
 	}
 	
@@ -184,9 +189,9 @@ class SolicitacaoController {
 			to solicitacao.requerente.email
 			subject "Solicitacao Rejeitada"
 			body "Sua Solicitacao ${solicitacao.tipo.nome} Foi Rejeitada.  Motivo:${situacaoInstance.observacao}"
-			}
-		
 		}
+		
+	}
 	
 	def encaminhar = {
 		def solicitacao = Solicitacao.get(params.id)
@@ -205,7 +210,7 @@ class SolicitacaoController {
 			to e.destinatario.email
 			subject solicitacao.tipo.nome
 			html "Encaminhado de: ${e.remetente} justificativa: ${justificativa}."
-			}	
+		}
 			
 	}
 	
