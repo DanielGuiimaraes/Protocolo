@@ -12,6 +12,6 @@ class EstadoTests extends GrailsUnitTestCase {
     }
 
     void testSomething() {
-
+        println "Este teste ainda nao faz nada"
     }
 }
