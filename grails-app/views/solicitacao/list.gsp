@@ -59,6 +59,7 @@
             
             <g:jasperReport controller = 'solicitacao' action = 'relatorio' format = 'PDF,XLS' jasper = 'solicitacoes' name = 'todas as solicitacoes'/>
             <g:jasperReport controller = 'solicitacao' action = 'relatorio' format = 'PDF,XLS' jasper = 'Teste' name = 'Teste de Relatório'/>
+            <g:jasperReport controller = 'solicitacao' action = 'relatorio' format = 'PDF' jasper = 'daniel' name = 'Teste Daniel'/>
         </div>
     </body>
 </html>

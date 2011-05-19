@@ -21,7 +21,7 @@ class SolicitacaoController {
 		def solicitacoes = Solicitacao.list()
 		chain(controller:'jasper', action:'index', model:[data:solicitacoes], params:params)
 	}
-
+		
     def list = {
         params.max = Math.min(params.max ? params.int('max') : 10, 100)
         [solicitacaoInstanceList: Solicitacao.list(params), solicitacaoInstanceTotal: Solicitacao.count()]
