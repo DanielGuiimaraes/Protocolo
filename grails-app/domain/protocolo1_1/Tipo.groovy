@@ -7,6 +7,9 @@ class Tipo {
 	Pessoa responsavel
 
     static constraints = {
+		nome(blank:false, minLength:3)
+		categoria(blank:false)
+		responsavel(blank:false)
     }
 	
 	String toString(){

@@ -5,6 +5,7 @@ class Categoria {
 	String nome
 
     static constraints = {
+		nome(blank: false)
     }
 	
 	String toString(){
