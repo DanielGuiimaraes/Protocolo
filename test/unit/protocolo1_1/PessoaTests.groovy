@@ -2,7 +2,7 @@ package protocolo1_1
 
 import grails.test.*
 
-class EstadoTests extends GrailsUnitTestCase {
+class PessoaTests extends GrailsUnitTestCase {
     protected void setUp() {
         super.setUp()
     }
